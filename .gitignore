@@ -1,0 +1,6 @@
+.env
+logs
+minio_data
+plugins
+dags/__pycache__
+dags/data
