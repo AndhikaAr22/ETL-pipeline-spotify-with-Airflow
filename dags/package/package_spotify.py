@@ -3,6 +3,8 @@ import base64
 import json
 from airflow.models import Variable
 
+
+# class spotify
 class Spotify:
     client_id_spotify = Variable.get('client_id_spotify')
     client_secret_spotify = Variable.get('client_secret_spotify')

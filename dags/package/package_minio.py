@@ -5,6 +5,7 @@ from airflow.models import Connection
 from airflow.hooks.base import BaseHook
 from airflow.models import Variable
 
+# class minio
 class MinioBucket:
     def __init__(self):
         postgres_conn = Connection.get_connection_from_secrets('neon_postgresql')
