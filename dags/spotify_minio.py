@@ -6,6 +6,7 @@ from airflow.models import Variable
 from airflow.operators.python_operator import PythonOperator
 from airflow.operators.dummy_operator import DummyOperator
 
+# task untuk mengambil data spotify dan load data ke minio
 def task_1():
     from package.package_spotify import Spotify
     from package.package_minio import MinioBucket
@@ -17,7 +18,7 @@ def task_1():
 
     return insert_data_to_minio
 
-
+# task untuk mengambil data dari minio by data log
 def task_2(**kwargs):
     from package.load_data import insert_log_data
     task_instance = kwargs['task_instance']
@@ -27,7 +28,7 @@ def task_2(**kwargs):
     s3_object = insert_log_data(path)
     return s3_object
     
-
+# task untuk transform data dan load data to DB
 def task_3(**kwargs):
     from package.transform import Transformer
     from package.package_minio import MinioBucket

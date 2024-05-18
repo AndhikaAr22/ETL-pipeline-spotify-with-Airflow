@@ -3,6 +3,7 @@ from model.query import insert_data_log_path
 from sqlalchemy import text
 from airflow.models import Connection
 from airflow.hooks.base import BaseHook
+
 import json
 
 postgres_conn = Connection.get_connection_from_secrets('neon_postgresql')
