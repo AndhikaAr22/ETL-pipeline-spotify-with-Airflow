@@ -5,7 +5,7 @@ from airflow.hooks.base import BaseHook
 import json
 
 
-
+# class untuk transform
 class Transformer:
     def __init__(self, albums, songs, artists):
         self.albums = albums

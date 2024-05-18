@@ -1,6 +1,8 @@
 import boto3
 from sqlalchemy import create_engine
 
+
+# class untuk koneksi 
 class connection:
     def __init__(self, end_point, aws_access_key_id, aws_secret_access_key, postgres_host, postgres_db, postgres_user, 
                  postgres_password, postgres_port) :
