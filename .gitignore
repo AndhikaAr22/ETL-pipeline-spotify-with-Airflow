@@ -2,6 +2,6 @@
 logs
 minio_data
 plugins
-dags/__pycache__
+__pycache__
 dags/data
 
