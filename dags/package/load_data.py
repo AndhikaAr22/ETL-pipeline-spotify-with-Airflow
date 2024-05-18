@@ -21,7 +21,7 @@ conn = connection(
     postgres_password=postgres_conn.password,
     postgres_port=postgres_conn.port
 )
-# comment# fungsi untuk load data
+# fuction load data log to db
 def insert_log_data(path):
     path_component = path.split('/')
     file_name = path_component[5]
@@ -29,13 +29,10 @@ def insert_log_data(path):
     
 
     aunt_postgres = conn.postgres_connection()
-    connection = aunt_postgres.connect()  # Use the connect method on the Engine
-    # query = text(insert_data_log_path())
+    connection = aunt_postgres.connect()  
     query = insert_data_log_path()
-    # connection.execute(query, (file_name, s3_object))
-    # connection.execute(query, [(file_name, s3_object)])
     connection.execute(text(query), {'file_name': file_name, 's3_object': s3_object})
-    # connection.commit()
+
 
 
     connection.close()
