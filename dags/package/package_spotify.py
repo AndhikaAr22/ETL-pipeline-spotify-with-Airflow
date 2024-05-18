@@ -14,12 +14,7 @@ class Spotify:
     def get_token_spotify(self):
         token_url = self.url_token
         credentials = f'{self.client_id_spotify}:{self.client_secret_spotify}'
-        # print(credentials.encode())
-        # print('=================')
         base64_credentials = base64.b64encode(credentials.encode()).decode()
-        # print(base64_credentials)
-        # print('=================')
-        # print(base64.b64encode(credentials.encode()))
         payload = {
             'grant_type':'client_credentials'
         }   
