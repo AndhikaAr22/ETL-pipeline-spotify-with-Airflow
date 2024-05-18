@@ -21,7 +21,7 @@ conn = connection(
     postgres_password=postgres_conn.password,
     postgres_port=postgres_conn.port
 )
-# comment
+# comment# fungsi untuk load data
 def insert_log_data(path):
     path_component = path.split('/')
     file_name = path_component[5]
