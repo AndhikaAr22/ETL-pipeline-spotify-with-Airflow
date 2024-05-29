@@ -4,4 +4,4 @@ minio_data
 plugins
 __pycache__
 dags/data
-
+dags/project-bq-satu-a2562e6d0487.json
