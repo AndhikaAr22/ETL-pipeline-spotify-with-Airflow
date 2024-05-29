@@ -32,15 +32,21 @@ def task_2(**kwargs):
 def task_3(**kwargs):
     from package.transform import Transformer
     from package.package_minio import MinioBucket
+    from package.load_data import LoadData
     task_instance = kwargs['task_instance']
     s3_object = task_instance.xcom_pull(task_ids='cek_path_minio')
     minio_instance = MinioBucket()
     list_album, list_song, list_artist = minio_instance.json_parser(s3_object)
     # transformer
     transformer = Transformer(albums=list_album, songs=list_song, artists=list_artist)
-    transformer.get_data_album()
-    transformer.get_data_artist()
-    transformer.get_data_song()
+    dataalbum = transformer.get_data_album()
+    dataartist = transformer.get_data_artist()
+    datasong = transformer.get_data_song()
+    # load data to bigquery
+    load_data = LoadData(df_album=dataalbum, df_artist=dataartist, df_song=datasong)
+    data_album = load_data.load_data_album()
+    data_song = load_data.load_data_song()
+    data_artist = load_data.load_data_artist()
 
 
 
@@ -75,7 +81,7 @@ with DAG(
         python_callable = task_2
     )
     task_tiga = PythonOperator(
-        task_id = 'load_data_to_db',
+        task_id = 'load_data_to_bq',
         python_callable = task_3
     )
 
