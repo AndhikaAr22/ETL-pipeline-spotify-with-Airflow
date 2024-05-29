@@ -1,9 +1,9 @@
----
 version: '3.4'
 
 x-common:
   &common
-  image: apache/airflow:2.3.0
+  build: .
+  image: my_airflow_image:latest  # Ganti dengan image kustom yang Anda buat
   user: "${AIRFLOW_UID}:0"
   env_file: 
     - .env
@@ -49,7 +49,6 @@ services:
 
   scheduler:
     <<: [*common, *depends-on]
-
     container_name: airflow-scheduler2024
     command: scheduler
     restart: on-failure
@@ -57,8 +56,7 @@ services:
       - "8793:8793"
 
   webserver:
-    <<: [*common, *depends-on ]
-    
+    <<: [*common, *depends-on]
     container_name: airflow-webserver2024
     restart: always
     command: webserver
@@ -80,6 +78,7 @@ services:
         mkdir -p /sources/logs /sources/dags /sources/plugins
         chown -R "${AIRFLOW_UID}:0" /sources/{logs,dags,plugins}
         exec /entrypoint airflow version
+
 volumes:
   postgres_airflow:
-      external: true
+    external: true

@@ -1,0 +1,5 @@
+matplotlib
+google-cloud-bigquery
+scikit-learn
+spotipy
+python-dotenv
