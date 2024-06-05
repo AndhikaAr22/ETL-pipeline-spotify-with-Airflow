@@ -127,4 +127,5 @@ class LoadData:
         except Exception as e:
             print("Terjadi kesalahan saat memuat data ke BigQuery:", str(e))
         
-    
+        
+
