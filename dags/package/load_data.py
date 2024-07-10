@@ -7,7 +7,7 @@ from google.cloud import bigquery
 
 import json
 
-postgres_conn = Connection.get_connection_from_secrets('neon_postgresql')
+postgres_conn = Connection.get_connection_from_secrets('postgres_id')
 s3_conn = BaseHook.get_connection("spotify_minio")
 extra = s3_conn.extra
 extra_convt = json.loads(extra)
@@ -72,7 +72,7 @@ class LoadData:
             # Menunggu hingga job selesai
             job.result()
 
-            print("Data album telah dimuat ke BigQuery.")
+            print("sukses load data album ke BigQuery.")
         except Exception as e:
             print("Terjadi kesalahan saat memuat data ke BigQuery:", str(e))
         
@@ -96,7 +96,7 @@ class LoadData:
             # Menunggu hingga job selesai
             job.result()
 
-            print("Data artist telah dimuat ke BigQuery.")
+            print("sukses load data artis ke BigQuery.")
         except Exception as e:
             print("Terjadi kesalahan saat memuat data ke BigQuery:", str(e))
         
@@ -123,7 +123,7 @@ class LoadData:
             # Menunggu hingga job selesai
             job.result()
 
-            print("Data song telah dimuat ke BigQuery.")
+            print("sukses load data lagu ke BigQuery.")
         except Exception as e:
             print("Terjadi kesalahan saat memuat data ke BigQuery:", str(e))
         

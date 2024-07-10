@@ -11,7 +11,7 @@ class Transformer:
         self.albums = albums
         self.songs = songs
         self.artists = artists
-        postgres_conn = Connection.get_connection_from_secrets('neon_postgresql')
+        postgres_conn = Connection.get_connection_from_secrets('postgres_id')
         s3_conn = BaseHook.get_connection("spotify_minio")
         extra = s3_conn.extra
         extra_convt = json.loads(extra)

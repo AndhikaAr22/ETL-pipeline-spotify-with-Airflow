@@ -25,7 +25,7 @@ def task_2(**kwargs):
     path = task_instance.xcom_pull(task_ids='get_data_insert_to_minio')
     if path is None:
         raise ValueError("Path is None")
-    s3_object = insert_log_data(path)
+    s3_object = insert_log_data(path)   
     return s3_object
     
 # task untuk transform data dan load data to DB
