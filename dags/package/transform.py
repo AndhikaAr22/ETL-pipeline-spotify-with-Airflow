@@ -39,6 +39,8 @@ class Transformer:
         df_album['release_date'] =  df_album['release_date'].apply(
             lambda date: f'{date}-01-01' if len(date) == 4 else date
         )
+        # konversi string ke datetime
+        df_album['release_date'] =  pd.to_datetime(df_album['release_date'], format='%Y-%m-%d')
         df_album = df_album.drop_duplicates(subset=['album_name'])
         engine = self.postgres_conn.connect()
         df_album.to_sql('album_table', con=engine, if_exists='replace', index=False)

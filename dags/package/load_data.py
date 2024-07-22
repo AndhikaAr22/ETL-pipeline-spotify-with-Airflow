@@ -45,7 +45,7 @@ def insert_log_data(path):
 
 
 class LoadData:
-    client = bigquery.Client.from_service_account_json('/opt/airflow/dags/project-bq-satu-a2562e6d0487.json', project='project-bq-satu')
+    client = bigquery.Client.from_service_account_json('/opt/airflow/dags/project-bq-satu-2e215b13c424.json', project='project-bq-satu')
     def __init__(self, df_album, df_artist, df_song):
         self.df_album = df_album
         self.df_artist = df_artist
@@ -59,7 +59,7 @@ class LoadData:
         schema = [
             bigquery.SchemaField("album_id", "STRING", "NULLABLE"),
             bigquery.SchemaField("album_name", "STRING", "NULLABLE"),
-            bigquery.SchemaField("release_date", "STRING", "NULLABLE"),
+            bigquery.SchemaField("release_date", "DATE", "NULLABLE"),
             bigquery.SchemaField("total_track", "INTEGER", "NULLABLE"),
             bigquery.SchemaField("album_type", "STRING", "NULLABLE"),
             bigquery.SchemaField("album_url", "STRING", "NULLABLE")
