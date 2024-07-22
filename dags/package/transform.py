@@ -35,6 +35,10 @@ class Transformer:
         column_album = ['album_id', 'album_name',  'release_date', 'total_track', 'album_type', 'album_url']
 
         df_album = pd.DataFrame(data_minio, columns= column_album)
+        # transformasi pada kolom release data
+        df_album['release_date'] =  df_album['release_date'].apply(
+            lambda date: f'{date}-01-01' if len(date) == 4 else date
+        )
         df_album = df_album.drop_duplicates(subset=['album_name'])
         engine = self.postgres_conn.connect()
         df_album.to_sql('album_table', con=engine, if_exists='replace', index=False)
